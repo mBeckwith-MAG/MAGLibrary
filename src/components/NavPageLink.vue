@@ -1,17 +1,32 @@
 <template>
-    <RouterLink 
-        :to="linkTo" 
-        class="text-center uppercase p-2 cursor-pointer rounded-b-md shadow-md font-bold text-white bg-sky-300 hover:bg-sky-400 active:bg-sky-500 md:rounded-tr-md md:rounded-bl-none" 
-        activeClass="bg-sky-500"
-    >
+    <div :class="[globalClasses, colorClass]" :activeClass="activeClass">
         <slot></slot>
-    </RouterLink>
+    </div>
 </template>
 <script setup>
 defineProps({
-    linkTo: {
+    colorClass: {
+        type: [String, Array],
+        default: [
+            'bg-stone-100',
+            'hover:bg-stone-200',
+        ]
+    },
+    activeClass: {
         type: String,
-        required: true
+        default: 'bg-stone-500'
     }
 })
+
+const globalClasses = [
+    'text-center',
+    'uppercase',
+    'p-2',
+    'cursor-pointer',
+    'rounded-b-md',
+    'shadow-sm',
+    'font-bold',
+    'md:rounded-tr-md',
+    'md:rounded-bl-none'
+]
 </script>

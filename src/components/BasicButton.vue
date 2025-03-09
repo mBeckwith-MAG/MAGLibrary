@@ -1,14 +1,39 @@
 <template>
-    <div class="p-4 rounded-md uppercase cursor-pointer font-bold text-center bg-sky-300 hover:bg-sky-400 active:bg-sky-500"
-    :class="{'text-white bg-stone-400 hover:bg-stone-500 active:bg-stone-600': darkMode}">
+    <div :class="[globalClasses, colors]" :activeClass="activeClass" >
         <slot></slot>
     </div>
 </template>
 <script setup>
-defineProps({
-    darkMode: {
-        type: Boolean,
-        default: false
+import { computed } from 'vue'
+
+const props = defineProps({
+    colorClass: {
+        type: [String, Array],
+        default: [
+            'bg-stone-100',
+            'hover:bg-stone-200',
+        ]
+    },
+    activeClass: {
+        type: String,
+        default: 'bg-stone-500'
     }
 })
+
+const colors = computed(() => {
+    
+    return props.colorClass.push(`active:${props.activeClass.value}`)
+})
+
+const globalClasses = [
+    'text-center',
+    'uppercase',
+    'p-2',
+    'cursor-pointer',
+    'rounded-b-md',
+    'shadow-sm',
+    'font-bold',
+    'md:rounded-tr-md',
+    'md:rounded-bl-none'
+]
 </script>
