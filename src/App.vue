@@ -20,7 +20,7 @@ const inputTest = ref(null)
       <BasicButton>MB</BasicButton>
     </template>
     <template #content>
-      <BasicInput label="Yep" input-type="text" input-placeholder="ok then" focus-color="focus:border-purple-400" v-model="inputTest" />
+      <BasicInput label="Yep" input-type="text" input-placeholder="ok then" v-model="inputTest" />
       <BasicResult label="result" :result="inputTest" class="mt-2" />
     </template>
   </MorphingNav>
